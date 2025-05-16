@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+:root {
+  /* Light theme (default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --border-color: #e0e0e0;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-border: #e0e0e0;
+  --section-bg: #f9f9f9;
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  /* Dark theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: #333333;
+  --card-bg: #111111;
+  --card-border: #333333;
+  --nav-bg: rgba(10, 10, 10, 0.9);
+  --nav-border: #333333;
+  --section-bg: #1a1a1a;
+  --hover-bg: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
+html, body, #__next {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Fira Mono', monospace;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0 0 15px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: var(--text-primary);
+}
+
+/* Header styles */
+.header .location {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.header p {
+  margin: 4px 0 0 0;
+  color: #999;
+  font-size: 16px;
+}
+
+/* Menu styles */
+.menu h2 {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu li {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #bbb;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.menu li:hover {
+  color: white;
+}
+
+.menu .arrow {
+  font-weight: bold;
+}
+
+/* Footer styles */
+.footer {
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #777;
+}
+
+.footer .social-links a {
+  color: #bbb;
+  margin-right: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.footer .social-links a:hover {
+  color: white;
+}
+
+.footer .version {
+  color: #4ade80; /* green */
+  font-weight: 600;
+}
