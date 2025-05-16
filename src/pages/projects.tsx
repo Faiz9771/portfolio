@@ -320,15 +320,15 @@ export default function Projects() {
 
         .project-card {
           background-color: var(--card-bg);
-          border-radius: 12px !important;
-          padding: 20px !important;
-          transition: all 0.25s ease !important;
-          border: 1px solid var(--border-color) !important;
-          display: flex !important;
-          flex-direction: column !important;
-          height: 100% !important;
-          position: relative !important;
-          overflow: hidden !important;
+          border-radius: 12px;
+          padding: 20px;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid var(--border-color);
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
@@ -408,24 +408,24 @@ export default function Projects() {
         }
 
         .project-image {
-          width: 100% !important;
-          height: 180px !important;
-          border-radius: 8px !important;
-          overflow: hidden !important;
-          margin-bottom: 16px !important;
-          background-color: var(--bg-tertiary) !important;
-          border: 1px solid var(--border-color) !important;
+          width: 100%;
+          height: 180px;
+          border-radius: 8px;
+          overflow: hidden;
+          margin-bottom: 16px;
+          background-color: var(--bg-tertiary);
+          border: 1px solid var(--border-color);
         }
 
         .project-image img {
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover !important;
-          transition: transform 0.3s ease !important;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
         }
 
         .project-card:hover .project-image img {
-          transform: scale(1.03) !important;
+          transform: scale(1.03);
         }
 
         .project-description {
