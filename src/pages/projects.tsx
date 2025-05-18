@@ -296,12 +296,12 @@ export default function Projects() {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, minmax(300px, 1fr));
           gap: 30px;
           margin: 30px auto;
-          padding: 0 10px;
+          padding: 0 20px;
           width: 100%;
-          max-width: 1400px;
+          max-width: 1440px;
           box-sizing: border-box;
         }
         
@@ -345,6 +345,7 @@ export default function Projects() {
           height: 100%;
           min-height: 400px;
           width: 100%;
+          max-width: 100%;
           box-sizing: border-box;
           position: relative;
           overflow: hidden;
@@ -518,11 +519,12 @@ export default function Projects() {
         }
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1300px) {
           .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(280px, 1fr));
             gap: 25px;
             padding: 0 20px;
+            max-width: 1000px;
           }
         }
         
@@ -530,7 +532,7 @@ export default function Projects() {
           .projects-grid {
             grid-template-columns: 1fr;
             gap: 25px;
-            padding: 0 15px;
+            padding: 0 20px;
             max-width: 500px;
             margin: 20px auto;
           }
