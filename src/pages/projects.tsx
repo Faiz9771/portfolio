@@ -239,8 +239,10 @@ export default function Projects() {
           color: var(--text-primary);
           font-family: 'Fira Mono', monospace;
           padding: 20px;
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .navbar {
@@ -329,12 +331,12 @@ export default function Projects() {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(300px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 30px;
           margin: 30px auto;
           padding: 0 20px;
           width: 100%;
-          max-width: 1440px;
+          max-width: 1400px;
           box-sizing: border-box;
         }
         
@@ -566,27 +568,345 @@ export default function Projects() {
         }
         }
 
-        @media (max-width: 1300px) {
+        /* Filters Section */
+        .filters-container {
+          margin: 0 auto 2rem;
+          background: var(--card-bg);
+          border-radius: 12px;
+          padding: 1.5rem;
+          border: 1px solid var(--border-color);
+          max-width: 1400px;
+          width: calc(100% - 40px);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-box {
+          position: relative;
+          margin-bottom: 1.5rem;
+          width: 100%;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 0.8rem 1rem;
+          border-radius: 8px;
+          border: 1px solid var(--border-color);
+          background: var(--bg-primary);
+          color: var(--text-primary);
+          font-size: 1rem;
+          transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+          outline: none;
+          border-color: #4f46e5;
+          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .clear-search {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: var(--text-secondary);
+          cursor: pointer;
+          font-size: 1.2rem;
+          line-height: 1;
+          padding: 0.5rem;
+        }
+
+        .tech-filters {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .selected-tech {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          align-items: center;
+          margin-bottom: 0.5rem;
+        }
+
+        .tech-tag.selected {
+          background: rgba(79, 70, 229, 0.1);
+          color: #4f46e5;
+          padding: 0.5rem 0.9rem;
+          border-radius: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.85rem;
+          border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .remove-tech {
+          background: none;
+          border: none;
+          color: inherit;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          margin-left: 0.25rem;
+          font-size: 1.1em;
+          line-height: 1;
+          opacity: 0.7;
+          transition: opacity 0.2s;
+        }
+
+        .remove-tech:hover {
+          opacity: 1;
+        }
+
+        .clear-filters {
+          background: none;
+          border: none;
+          color: #4f46e5;
+          cursor: pointer;
+          font-size: 0.85rem;
+          margin-left: 0.5rem;
+          padding: 0.4rem 0.8rem;
+          border-radius: 6px;
+          transition: background 0.2s;
+          font-weight: 500;
+        }
+
+        .clear-filters:hover {
+          background: rgba(79, 70, 229, 0.1);
+        }
+
+        .tech-select {
+          width: 100%;
+          padding: 0.8rem 1rem;
+          border-radius: 8px;
+          border: 1px solid var(--border-color);
+          background: var(--bg-primary);
+          color: var(--text-primary);
+          font-size: 0.95rem;
+          cursor: pointer;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 1rem center;
+          background-size: 1em;
+          padding-right: 2.5rem;
+          transition: all 0.2s ease;
+        }
+
+        .tech-select:focus {
+          outline: none;
+          border-color: #4f46e5;
+          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .tech-select option {
+          background: var(--card-bg);
+          color: var(--text-primary);
+          padding: 0.5rem;
+        }
+
+        @media (max-width: 1200px) {
           .projects-grid {
-            grid-template-columns: repeat(2, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 0 20px;
-            max-width: 1000px;
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 900px;
           }
         }
         
         @media (max-width: 768px) {
           .projects-grid {
             grid-template-columns: 1fr;
-            gap: 25px;
+            max-width: 500px;
+            gap: 20px;
+          }
+        }
+        
+        /* Filters Section */
+        .filters-container {
+          margin: 0 auto 2rem;
+          background: var(--card-bg);
+          border-radius: 12px;
+          padding: 1.5rem;
+          border: 1px solid var(--border-color);
+          max-width: 1400px;
+          width: calc(100% - 40px);
+        }
+
+        .search-box {
+          position: relative;
+          margin-bottom: 1rem;
+          width: 100%;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          border: 1px solid var(--border-color);
+          background: var(--bg-primary);
+          color: var(--text-primary);
+          font-size: 1rem;
+          transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+          outline: none;
+          border-color: #4f46e5;
+          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .clear-search {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: var(--text-secondary);
+          cursor: pointer;
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+
+        .tech-filters {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .selected-tech {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        .tech-tag.selected {
+          background: var(--bg-tertiary);
+          color: var(--text-primary);
+          padding: 0.4rem 0.75rem;
+          border-radius: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.85rem;
+        }
+
+        .remove-tech {
+          background: none;
+          border: none;
+          color: inherit;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          font-size: 1.1em;
+          line-height: 1;
+          opacity: 0.7;
+          transition: opacity 0.2s;
+        }
+
+        .remove-tech:hover {
+          opacity: 1;
+        }
+
+        .clear-filters {
+          background: none;
+          border: none;
+          color: #4f46e5;
+          cursor: pointer;
+          font-size: 0.85rem;
+          margin-left: 0.5rem;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          transition: background 0.2s;
+        }
+
+        .clear-filters:hover {
+          background: rgba(79, 70, 229, 0.1);
+        }
+
+        .tech-select {
+          width: 100%;
+          padding: 0.7rem 1rem;
+          border-radius: 8px;
+          border: 1px solid var(--border-color);
+          background: var(--bg-primary);
+          color: var(--text-primary);
+          font-size: 0.95rem;
+          cursor: pointer;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 1rem center;
+          background-size: 1em;
+          padding-right: 2.5rem;
+        }
+
+        .tech-select:focus {
+          outline: none;
+          border-color: #4f46e5;
+          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .tech-select option {
+          background: var(--card-bg);
+          color: var(--text-primary);
+          padding: 0.5rem;
+        }
+        
+        @media (max-width: 1024px) {
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 800px;
+          }
+        }
+        
+        @media (max-width: 1024px) {
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 900px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .projects-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
             padding: 0 15px;
             max-width: 500px;
             margin: 20px auto;
           }
           
           .filters-container {
-            padding: 1rem;
+            padding: 1.25rem;
+            width: calc(100% - 30px);
+            margin: 0 auto 1.5rem;
           }
+          
+          .tech-select, .search-input {
+            font-size: 0.9rem;
+            padding: 0.7rem 1rem;
+          }
+          
+          .tech-tag.selected {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+          }
+          
+          .projects-page {
+            padding: 15px;
+          }
+        }
           
           .project-card {
             min-height: auto;
