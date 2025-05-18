@@ -170,16 +170,33 @@ export default function Projects() {
 
   // Filter projects based on selected technologies and search query
   const filteredProjects = useMemo(() => {
+    const searchLower = searchQuery.toLowerCase().trim();
+    
     return projects.filter(project => {
-      // Filter by selected technologies
+      // Normalize project technologies for case-insensitive comparison
+      const projectTechs = project.technologies.map(tech => tech.toLowerCase());
+      
+      // Filter by selected technologies (case-insensitive)
       const matchesTech = selectedTech.length === 0 || 
-        selectedTech.every(tech => project.technologies.includes(tech));
+        selectedTech.every(tech => 
+          projectTechs.includes(tech.toLowerCase())
+        );
       
-      // Filter by search query
-      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase());
+      // Skip further checks if tech filter doesn't match
+      if (!matchesTech) return false;
       
-      return matchesTech && matchesSearch;
+      // Skip search filter if no search query
+      if (!searchLower) return true;
+      
+      // Check if search query matches title or description (case-insensitive)
+      const matchesSearch = 
+        project.title.toLowerCase().includes(searchLower) ||
+        project.description.toLowerCase().includes(searchLower) ||
+        project.technologies.some(tech => 
+          tech.toLowerCase().includes(searchLower)
+        );
+      
+      return matchesSearch;
     });
   }, [projects, selectedTech, searchQuery]);
 
