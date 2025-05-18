@@ -296,25 +296,40 @@ export default function Projects() {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 80px;
-          margin: 60px auto;
-          padding: 0 20px;
-          max-width: 1400px;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 30px;
+          margin: 30px auto;
+          padding: 0 10px;
+          width: 100%;
+          align-items: stretch;
         }
         
         @media (max-width: 1024px) {
           .projects-grid {
-            gap: 50px;
-            margin: 50px auto;
+            gap: 25px;
+            margin: 30px auto;
           }
         }
         
         @media (max-width: 768px) {
           .projects-grid {
-            gap: 40px;
-            margin: 40px 16px;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin: 25px 10px;
             padding: 0;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .projects-grid {
+            margin: 20px 0;
+            gap: 20px;
+          }
+          
+          .project-card {
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
           }
         }
 
@@ -327,9 +342,10 @@ export default function Projects() {
           display: flex;
           flex-direction: column;
           height: 100%;
+          min-height: 400px; /* Ensure minimum height */
           position: relative;
           overflow: hidden;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .project-card::before {
@@ -357,7 +373,7 @@ export default function Projects() {
           display: flex;
           align-items: flex-start;
           gap: 15px;
-          margin-bottom: 20px;
+          margin: 0 0 16px 0;
           position: relative;
         }
 
@@ -409,31 +425,37 @@ export default function Projects() {
 
         .project-image {
           width: 100%;
-          height: 180px;
+          height: 180px; /* Fixed height for consistency */
           border-radius: 8px;
           overflow: hidden;
-          margin-bottom: 16px;
+          margin: 0 0 16px 0;
           background-color: var(--bg-tertiary);
           border: 1px solid var(--border-color);
+          position: relative;
         }
 
         .project-image img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.3s ease;
+          transition: transform 0.5s ease;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block; /* Ensure proper rendering */
         }
 
         .project-card:hover .project-image img {
-          transform: scale(1.03);
+          transform: scale(1.05);
         }
 
         .project-description {
           color: var(--text-secondary);
           line-height: 1.6;
-          margin-bottom: 20px;
+          margin: 0 0 20px 0;
           flex-grow: 1;
           font-size: 0.95rem;
+          min-height: 72px; /* Ensure consistent height for description */
         }
 
         .technologies {
@@ -441,6 +463,7 @@ export default function Projects() {
           flex-wrap: wrap;
           gap: 8px;
           margin-top: auto;
+          min-height: 32px; /* Ensure consistent height for tech tags */
         }
 
         .tech-tag {
@@ -491,9 +514,26 @@ export default function Projects() {
         }
         }
 
+        @media (max-width: 1024px) {
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+          }
+        }
+        
         @media (max-width: 768px) {
           .projects-grid {
             grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 0 15px;
+          }
+          
+          .project-card {
+            min-height: auto; /* Allow cards to grow naturally on mobile */
+          }
+          
+          .project-image {
+            height: 200px; /* Slightly larger image on mobile */
           }
           
           .page-title {

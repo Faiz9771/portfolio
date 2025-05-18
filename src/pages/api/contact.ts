@@ -6,53 +6,111 @@ type Data = {
   message: string;
 };
 
+// Helper function to validate environment variables
+function getSmtpConfig() {
+  // In development, use ethereal.email for testing
+  if (process.env.NODE_ENV === 'development') {
+    return {
+      host: 'smtp.ethereal.email',
+      port: 587,
+      secure: false,
+      user: process.env.ETHEREAL_EMAIL || 'test@example.com',
+      pass: process.env.ETHEREAL_PASSWORD || 'password',
+      to: process.env.ETHEREAL_EMAIL || 'test@example.com',
+      isDev: true
+    };
+  }
+
+  // In production, use the provided SMTP configuration
+  const requiredVars = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS', 'SMTP_TO'];
+  const missingVars = requiredVars.filter(varName => !process.env[varName]);
+  
+  if (missingVars.length > 0) {
+    throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+  }
+
+  return {
+    host: process.env.SMTP_HOST!,
+    port: parseInt(process.env.SMTP_PORT || '587', 10),
+    secure: process.env.SMTP_SECURE === 'true',
+    user: process.env.SMTP_USER!,
+    pass: process.env.SMTP_PASS!,
+    to: process.env.SMTP_TO!,
+    isDev: false
+  };
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  // Only allow POST requests
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Method not allowed' });
-  }
-
-  const { name, email, message } = req.body;
-
-  // Basic validation
-  if (!name || !email || !message) {
-    return res.status(400).json({ success: false, message: 'Missing required fields' });
-  }
-
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ success: false, message: 'Invalid email address' });
+    return res.status(405).json({ 
+      success: false, 
+      message: 'Method not allowed' 
+    });
   }
 
   try {
-    // Validate required environment variables
-    const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_TO'];
-    const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
-    
-    if (missingVars.length > 0) {
-      throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+    const { name, email, message } = req.body;
+
+    // Input validation
+    if (!name?.trim() || !email?.trim() || !message?.trim()) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'All fields are required' 
+      });
     }
 
-    // Create a transporter object using the SMTP transport
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Please enter a valid email address' 
+      });
+    }
+
+    // Message length validation
+    if (message.length > 2000) {
+      return res.status(400).json({
+        success: false,
+        message: 'Message is too long. Please limit to 2000 characters.'
+      });
+    }
+
+    // Get SMTP configuration
+    const smtpConfig = getSmtpConfig();
+    
+    // Create test account if in development
+    let testAccount;
+    if (smtpConfig.isDev) {
+      testAccount = await nodemailer.createTestAccount();
+      console.log('Test account created:', testAccount.user);
+      
+      // Override with test account credentials
+      smtpConfig.user = testAccount.user;
+      smtpConfig.pass = testAccount.pass;
+      smtpConfig.to = testAccount.user;
+    }
+
+    // Create transporter
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
+      host: smtpConfig.host,
+      port: smtpConfig.port,
+      secure: smtpConfig.secure,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: smtpConfig.user,
+        pass: smtpConfig.pass,
       },
       tls: {
-        // Do not fail on invalid certs
-        rejectUnauthorized: false
-      }
+        // Only allow self-signed certs in development
+        rejectUnauthorized: !smtpConfig.isDev
+      },
+      logger: smtpConfig.isDev,
+      debug: smtpConfig.isDev
     });
-
-    // Verify connection configuration
-    await transporter.verify();
 
     // Current date and time
     const currentDate = new Date().toLocaleString('en-US', {
@@ -65,10 +123,10 @@ export default async function handler(
       timeZoneName: 'short'
     });
 
-    // Send mail with defined transport object
-    const info = await transporter.sendMail({
-      from: `"Portfolio Contact Form" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_TO,
+    // Prepare email options
+    const mailOptions = {
+      from: `"Portfolio Contact Form" <${smtpConfig.user}>`,
+      to: smtpConfig.to,
       replyTo: `"${name}" <${email}>`,
       subject: `New message from ${name} via Portfolio Contact Form`,
       text: `
@@ -76,10 +134,10 @@ export default async function handler(
         NEW CONTACT FORM MESSAGE
         ========================
         
-        📅 Date: ${currentDate}
-        👤 From: ${name} <${email}>
+        Date: ${currentDate}
+        From: ${name} <${email}>
         
-        📝 Message:
+        Message:
         ${message}
         
         ———
@@ -177,20 +235,45 @@ export default async function handler(
         </body>
         </html>
       `,
-    });
+    };
 
-    console.log('Message sent: %s', info.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
+    
+    // Log success in development
+    if (smtpConfig.isDev) {
+      console.log('Message sent: %s', info.messageId);
+      const previewUrl = nodemailer.getTestMessageUrl(info);
+      if (previewUrl) {
+        console.log('Preview URL: %s', previewUrl);
+      }
+    }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Your message has been sent successfully!',
     });
-  } catch (error) {
+    
+  } catch (error: unknown) {
     console.error('Error sending email:', error);
-    res.status(500).json({
+    
+    // More specific error messages based on error type
+    let errorMessage = 'Failed to send message. Please try again later.';
+    
+    if (error && typeof error === 'object' && 'code' in error) {
+      const errorCode = (error as { code: string }).code;
+      if (errorCode === 'ECONNECTION') {
+        errorMessage = 'Could not connect to the email server. Please try again later.';
+      } else if (errorCode === 'EAUTH') {
+        errorMessage = 'Authentication failed. Please check your email configuration.';
+      } else if (errorCode === 'EENVELOPE') {
+        errorMessage = 'Invalid email address. Please check the recipient email.';
+      }
+    }
+    
+    return res.status(500).json({
       success: false,
-      message: 'Failed to send message. Please try again later.',
+      message: errorMessage,
     });
   }
 }
