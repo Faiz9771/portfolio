@@ -10,8 +10,33 @@ import {
   FaHeartbeat 
 } from 'react-icons/fa';
 import { SiPython, SiJavascript, SiReact, SiNodedotjs, SiMongodb, SiExpress, SiRedis, SiPostgresql } from 'react-icons/si';
+import { useState, useMemo } from 'react';
+
+// Extract all unique technologies from projects
+const allTechnologies = [
+  'React.js', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Crypto',
+  'MERN Stack', 'Chart.js', 'Python', 'LLM', 'Real-time Data',
+  'Data Visualization', 'CNN', 'TDOA', 'Signal Processing',
+  'LangChain', 'OpenAI', 'Streamlit', 'GitHub API', 'Redis',
+  'Flask', 'Machine Learning', 'PostgreSQL', 'Pinecone'
+].sort();
 
 export default function Projects() {
+  const [selectedTech, setSelectedTech] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toggleTech = (tech: string) => {
+    setSelectedTech(prev => 
+      prev.includes(tech) 
+        ? prev.filter(t => t !== tech)
+        : [...prev, tech]
+    );
+  };
+
+  const clearFilters = () => {
+    setSelectedTech([]);
+    setSearchQuery('');
+  };
   const menuItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -188,7 +213,15 @@ export default function Projects() {
               <p className="project-description">{project.description}</p>
               <div className="technologies">
                 {project.technologies.map((tech, i) => (
-                  <span key={i} className="tech-tag" title={tech}>
+                  <span 
+                    key={i} 
+                    className={`tech-tag ${selectedTech.includes(tech) ? 'highlight' : ''}`} 
+                    title={tech}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleTech(tech);
+                    }}
+                  >
                     {getTechIcon(tech)}
                     <span className="tech-name">{tech}</span>
                   </span>
@@ -485,6 +518,20 @@ export default function Projects() {
           line-height: 1;
           height: 24px;
           opacity: 0.9;
+          cursor: pointer;
+          user-select: none;
+        }
+        
+        .tech-tag.highlight {
+          background: rgba(79, 70, 229, 0.1);
+          border-color: #4f46e5;
+          color: #4f46e5;
+        }
+        
+        .tech-tag:hover {
+          background: var(--hover-bg);
+          transform: translateY(-1px);
+          opacity: 1;
         }
 
         .tech-tag:hover {
@@ -532,9 +579,13 @@ export default function Projects() {
           .projects-grid {
             grid-template-columns: 1fr;
             gap: 25px;
-            padding: 0 20px;
+            padding: 0 15px;
             max-width: 500px;
             margin: 20px auto;
+          }
+          
+          .filters-container {
+            padding: 1rem;
           }
           
           .project-card {
