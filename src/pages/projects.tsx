@@ -296,12 +296,13 @@ export default function Projects() {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 30px;
           margin: 30px auto;
           padding: 0 10px;
           width: 100%;
-          align-items: stretch;
+          max-width: 1400px;
+          box-sizing: border-box;
         }
         
         @media (max-width: 1024px) {
@@ -342,7 +343,9 @@ export default function Projects() {
           display: flex;
           flex-direction: column;
           height: 100%;
-          min-height: 400px; /* Ensure minimum height */
+          min-height: 400px;
+          width: 100%;
+          box-sizing: border-box;
           position: relative;
           overflow: hidden;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -425,13 +428,14 @@ export default function Projects() {
 
         .project-image {
           width: 100%;
-          height: 180px; /* Fixed height for consistency */
+          height: 180px;
           border-radius: 8px;
           overflow: hidden;
           margin: 0 0 16px 0;
           background-color: var(--bg-tertiary);
           border: 1px solid var(--border-color);
           position: relative;
+          flex-shrink: 0;
         }
 
         .project-image img {
@@ -453,9 +457,9 @@ export default function Projects() {
           color: var(--text-secondary);
           line-height: 1.6;
           margin: 0 0 20px 0;
-          flex-grow: 1;
+          flex: 1 0 auto;
           font-size: 0.95rem;
-          min-height: 72px; /* Ensure consistent height for description */
+          min-height: 72px;
         }
 
         .technologies {
@@ -514,26 +518,31 @@ export default function Projects() {
         }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .projects-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 25px;
+            padding: 0 20px;
           }
         }
         
         @media (max-width: 768px) {
           .projects-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 25px;
             padding: 0 15px;
+            max-width: 500px;
+            margin: 20px auto;
           }
           
           .project-card {
-            min-height: auto; /* Allow cards to grow naturally on mobile */
+            min-height: auto;
+            max-width: 100%;
+            margin: 0 auto;
           }
           
           .project-image {
-            height: 200px; /* Slightly larger image on mobile */
+            height: 200px;
           }
           
           .page-title {
