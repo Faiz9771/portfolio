@@ -18,7 +18,8 @@ const allTechnologies = [
   'MERN Stack', 'Chart.js', 'Python', 'LLM', 'Real-time Data',
   'Data Visualization', 'CNN', 'TDOA', 'Signal Processing',
   'LangChain', 'OpenAI', 'Streamlit', 'GitHub API', 'Redis',
-  'Flask', 'Machine Learning', 'PostgreSQL', 'Pinecone'
+  'Flask', 'Machine Learning', 'PostgreSQL', 'Pinecone',
+  'Scikit-learn', 'LightGBM', 'RDKit', 'FastAPI', 'Docker'
 ].sort();
 
 export default function Projects() {
@@ -46,6 +47,15 @@ export default function Projects() {
   ];
 
   const projects = [
+    {
+      title: 'SIDER',
+      date: '03/2024 - 05/2024',
+      description: 'Drug Side-Effect Prediction System using SMILES strings and multi-label classification.',
+      technologies: ['Python', 'Scikit-learn', 'LightGBM', 'RDKit', 'FastAPI', 'Streamlit', 'Docker'],
+      icon: <FaHeartbeat className="project-icon" />,
+      github: '#', // Add your GitHub link here
+      image: '/projects/sider.jpg'
+    },
     {
       title: 'SecureVault',
       date: '01/2025 - 04/2025',
@@ -158,6 +168,21 @@ export default function Projects() {
     }
   };
 
+  // Filter projects based on selected technologies and search query
+  const filteredProjects = useMemo(() => {
+    return projects.filter(project => {
+      // Filter by selected technologies
+      const matchesTech = selectedTech.length === 0 || 
+        selectedTech.every(tech => project.technologies.includes(tech));
+      
+      // Filter by search query
+      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      return matchesTech && matchesSearch;
+    });
+  }, [projects, selectedTech, searchQuery]);
+
   return (
     <div className="projects-page">
       {/* Navbar with Back button */}
@@ -180,8 +205,50 @@ export default function Projects() {
 
       <main className="projects-content">
         <h1>Projects</h1>
+        
+        {/* Search and Filter Section */}
+        <div className="search-container">
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+          </div>
+          
+          <div className="filter-box">
+            <div className="dropdown">
+              <button className="dropdown-toggle">
+                {selectedTech.length > 0 ? `Tech (${selectedTech.length})` : 'Filter by Tech'}
+              </button>
+              <div className="dropdown-menu">
+                {allTechnologies.map((tech) => (
+                  <label key={tech} className="dropdown-item">
+                    <input
+                      type="checkbox"
+                      checked={selectedTech.includes(tech)}
+                      onChange={() => toggleTech(tech)}
+                    />
+                    {tech}
+                  </label>
+                ))}
+                {selectedTech.length > 0 && (
+                  <button 
+                    onClick={clearFilters}
+                    className="clear-filters"
+                  >
+                    Clear Filters
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="projects-grid">
-          {projects.map((project, index) => (
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, index) => (
             <div key={index} className="project-card">
               <div className="project-header">
                 <div className="project-icon">
@@ -228,7 +295,12 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-          ))}
+            ))
+          ) : (
+            <div className="no-projects">
+              No projects found matching your criteria.
+            </div>
+          )}
         </div>
       </main>
 
@@ -573,9 +645,9 @@ export default function Projects() {
           margin: 0 auto 2rem;
           background: var(--card-bg);
           border-radius: 12px;
-          padding: 1.5rem;
+          padding: 1rem;
           border: 1px solid var(--border-color);
-          max-width: 1400px;
+          max-width: 1000px;
           width: calc(100% - 40px);
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
