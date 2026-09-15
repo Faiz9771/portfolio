@@ -1,35 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
 
 :root {
-  /* Light theme (default) */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --text-primary: #000000;
-  --text-secondary: #333333;
-  --border-color: #e0e0e0;
-  --card-bg: #ffffff;
-  --card-border: #e0e0e0;
-  --nav-bg: rgba(255, 255, 255, 0.9);
-  --nav-border: #e0e0e0;
-  --section-bg: #f9f9f9;
-  --hover-bg: rgba(0, 0, 0, 0.05);
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  /* Sunrise — warm gold and ember, inspired by the reference image. */
+  --bg-primary: #fff3df;
+  --bg-secondary: #ffe1ae;
+  --text-primary: #2b0905;
+  --text-secondary: #783316;
+  --border-color: #e99a32;
+  --card-bg: #fff9ee;
+  --card-border: #e99a32;
+  --nav-bg: rgba(255, 243, 223, 0.9);
+  --nav-border: #e99a32;
+  --section-bg: #ffebc9;
+  --hover-bg: rgba(214, 76, 14, 0.12);
+  --shadow-color: rgba(104, 25, 7, 0.18);
+  --accent: #d94d0c;
+  --accent-strong: #a92c08;
+  --accent-soft: rgba(217, 77, 12, 0.13);
+  --muted: #a45122;
+  --success: #2f7d45;
+  --danger: #ba2917;
 }
 
 .dark {
-  /* Dark theme */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
-  --border-color: #333333;
-  --card-bg: #111111;
-  --card-border: #333333;
-  --nav-bg: rgba(10, 10, 10, 0.9);
-  --nav-border: #333333;
-  --section-bg: #1a1a1a;
-  --hover-bg: rgba(255, 255, 255, 0.1);
-  --shadow-color: rgba(255, 255, 255, 0.05);
+  /* Eclipse — black, burgundy and glowing orange. */
+  --bg-primary: #090504;
+  --bg-secondary: #190806;
+  --text-primary: #fff1d6;
+  --text-secondary: #e7ae76;
+  --border-color: #6d2410;
+  --card-bg: #170907;
+  --card-border: #7d2a10;
+  --nav-bg: rgba(9, 5, 4, 0.9);
+  --nav-border: #6d2410;
+  --section-bg: #250c07;
+  --hover-bg: rgba(255, 133, 22, 0.15);
+  --shadow-color: rgba(255, 97, 10, 0.16);
+  --accent: #ff8516;
+  --accent-strong: #ffad24;
+  --accent-soft: rgba(255, 133, 22, 0.15);
+  --muted: #c76a32;
+  --success: #75c77f;
+  --danger: #ff806b;
 }
 
 html, body, #__next {
@@ -75,7 +87,7 @@ html, body, #__next {
 /* Header styles */
 .header .location {
   font-size: 14px;
-  color: #777;
+  color: var(--muted);
   margin-bottom: 5px;
   display: flex;
   align-items: center;
@@ -90,7 +102,7 @@ html, body, #__next {
 
 .header p {
   margin: 4px 0 0 0;
-  color: #999;
+  color: var(--text-secondary);
   font-size: 16px;
 }
 
@@ -98,7 +110,7 @@ html, body, #__next {
 .menu h2 {
   font-size: 12px;
   letter-spacing: 1.5px;
-  color: #666;
+  color: var(--muted);
   margin-bottom: 10px;
 }
 
@@ -115,13 +127,13 @@ html, body, #__next {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  color: #bbb;
+  color: var(--text-secondary);
   font-size: 16px;
   transition: color 0.3s ease;
 }
 
 .menu li:hover {
-  color: white;
+  color: var(--accent);
 }
 
 .menu .arrow {
@@ -130,17 +142,17 @@ html, body, #__next {
 
 /* Footer styles */
 .footer {
-  border-top: 1px solid #444;
+  border-top: 1px solid var(--border-color);
   padding-top: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: #777;
+  color: var(--muted);
 }
 
 .footer .social-links a {
-  color: #bbb;
+  color: var(--text-secondary);
   margin-right: 20px;
   text-decoration: none;
   display: flex;
@@ -150,11 +162,11 @@ html, body, #__next {
 }
 
 .footer .social-links a:hover {
-  color: white;
+  color: var(--accent);
 }
 
 .footer .version {
-  color: #4ade80; /* green */
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -245,8 +257,8 @@ html, body, #__next {
 
 .search-input:focus {
   outline: none;
-  border-color: #9ca3af;
-  box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
   background: var(--card-bg);
 }
 
@@ -273,12 +285,12 @@ html, body, #__next {
 }
 
 .dark .search-input:focus {
-  border-color: #6b7280;
-  box-shadow: 0 0 0 2px rgba(107, 114, 128, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
 .dark .search-input::placeholder {
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .tech-filter {
@@ -320,7 +332,7 @@ html, body, #__next {
 }
 
 .dropdown-toggle:hover {
-  border-color: #9ca3af;
+  border-color: var(--accent);
 }
 
 .dropdown-toggle::after {
@@ -390,7 +402,7 @@ html, body, #__next {
   background: none;
   border: none;
   border-top: 1px solid var(--border-color);
-  color: #ef4444;
+  color: var(--danger);
   padding: 0.75rem 1rem;
   margin-top: 0.5rem;
   cursor: pointer;
@@ -400,7 +412,7 @@ html, body, #__next {
 }
 
 .clear-filters:hover {
-  background-color: rgba(239, 68, 68, 0.1);
+  background-color: var(--accent-soft);
 }
 
 .no-projects {

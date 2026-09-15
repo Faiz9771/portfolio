@@ -123,8 +123,8 @@ export default function About() {
           transition: all 0.2s ease;
         }
         .back-button:hover {
-          color: white;
-          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--text-primary);
+          background-color: var(--accent-soft);
           text-decoration: none;
         }
         .menu {
@@ -226,7 +226,7 @@ export default function About() {
         }
         
         .section-title .icon {
-          color: #4f46e5;
+          color: var(--accent);
           font-size: 22px;
         }
         

@@ -29,15 +29,15 @@ const ThemeToggle = () => {
         }
         
         .theme-toggle:hover {
-          background: rgba(255, 255, 255, 0.1);
+          background: var(--accent-soft);
         }
         
         .light .theme-toggle {
-          color: #000;
+          color: var(--text-primary);
         }
         
         .light .theme-toggle:hover {
-          background: rgba(0, 0, 0, 0.1);
+          background: var(--accent-soft);
         }
       `}</style>
     </button>

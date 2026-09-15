@@ -34,7 +34,7 @@ export default function Footer() {
         style={{
           display: "flex",
           gap: "2rem",
-          color: "#ff79c6", // your pink color
+          color: "var(--accent)",
           position: "absolute",
           left: "50%",
           transform: "translateX(-50%)",
@@ -47,7 +47,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          style={{ color: "#777", display: "inline-flex" }}
+          style={{ color: "var(--text-secondary)", display: "inline-flex" }}
           onClick={() => setShowLogos(false)} // Optional: close on click
         >
           <FaLinkedin size={iconSize} />
@@ -57,7 +57,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          style={{ color: "#777", display: "inline-flex" }}
+          style={{ color: "var(--text-secondary)", display: "inline-flex" }}
           onClick={() => setShowLogos(false)}
         >
           <FaGithub size={iconSize} />
@@ -67,7 +67,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
-          style={{ color: "#777", display: "inline-flex" }}
+          style={{ color: "var(--text-secondary)", display: "inline-flex" }}
           onClick={() => setShowLogos(false)}
         >
           <FaInstagram size={iconSize} />
@@ -77,7 +77,7 @@ export default function Footer() {
       {/* Version text */}
       <div
         className="version"
-        style={{ marginLeft: "auto", marginRight: "1rem", color: "#77b" }}
+        style={{ marginLeft: "auto", marginRight: "1rem", color: "var(--accent)" }}
       >
         v4.0
       </div>

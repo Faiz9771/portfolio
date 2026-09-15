@@ -162,8 +162,8 @@ export default function Setup() {
           transition: all 0.2s ease;
         }
         .back-button:hover {
-          color: white;
-          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--text-primary);
+          background-color: var(--accent-soft);
           text-decoration: none;
         }
         .menu {

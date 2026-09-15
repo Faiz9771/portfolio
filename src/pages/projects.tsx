@@ -360,8 +360,8 @@ export default function Projects() {
         }
 
         .back-button:hover {
-          color: white;
-          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--text-primary);
+          background-color: var(--accent-soft);
           text-decoration: none;
         }
 
@@ -483,7 +483,7 @@ export default function Projects() {
           left: 0;
           right: 0;
           height: 3px;
-          background: linear-gradient(90deg, #333, #666);
+          background: linear-gradient(90deg, var(--accent-strong), var(--accent));
           opacity: 0.7;
         }
 
@@ -614,9 +614,9 @@ export default function Projects() {
         }
         
         .tech-tag.highlight {
-          background: rgba(79, 70, 229, 0.1);
-          border-color: #4f46e5;
-          color: #4f46e5;
+          background: var(--accent-soft);
+          border-color: var(--accent);
+          color: var(--accent);
         }
         
         .tech-tag:hover {
@@ -688,8 +688,8 @@ export default function Projects() {
 
         .search-input:focus {
           outline: none;
-          border-color: #4f46e5;
-          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 2px var(--accent-soft);
         }
 
         .clear-search {
@@ -721,15 +721,15 @@ export default function Projects() {
         }
 
         .tech-tag.selected {
-          background: rgba(79, 70, 229, 0.1);
-          color: #4f46e5;
+          background: var(--accent-soft);
+          color: var(--accent);
           padding: 0.5rem 0.9rem;
           border-radius: 20px;
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
           font-size: 0.85rem;
-          border: 1px solid rgba(79, 70, 229, 0.3);
+          border: 1px solid var(--accent-soft);
         }
 
         .remove-tech {
@@ -755,7 +755,7 @@ export default function Projects() {
         .clear-filters {
           background: none;
           border: none;
-          color: #4f46e5;
+          color: var(--accent);
           cursor: pointer;
           font-size: 0.85rem;
           margin-left: 0.5rem;
@@ -766,7 +766,7 @@ export default function Projects() {
         }
 
         .clear-filters:hover {
-          background: rgba(79, 70, 229, 0.1);
+          background: var(--accent-soft);
         }
 
         .tech-select {
@@ -791,8 +791,8 @@ export default function Projects() {
 
         .tech-select:focus {
           outline: none;
-          border-color: #4f46e5;
-          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 2px var(--accent-soft);
         }
 
         .tech-select option {
@@ -846,8 +846,8 @@ export default function Projects() {
 
         .search-input:focus {
           outline: none;
-          border-color: #4f46e5;
-          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 2px var(--accent-soft);
         }
 
         .clear-search {
@@ -909,7 +909,7 @@ export default function Projects() {
         .clear-filters {
           background: none;
           border: none;
-          color: #4f46e5;
+          color: var(--accent);
           cursor: pointer;
           font-size: 0.85rem;
           margin-left: 0.5rem;
@@ -919,7 +919,7 @@ export default function Projects() {
         }
 
         .clear-filters:hover {
-          background: rgba(79, 70, 229, 0.1);
+          background: var(--accent-soft);
         }
 
         .tech-select {
@@ -943,8 +943,8 @@ export default function Projects() {
 
         .tech-select:focus {
           outline: none;
-          border-color: #4f46e5;
-          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 2px var(--accent-soft);
         }
 
         .tech-select option {

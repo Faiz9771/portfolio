@@ -186,8 +186,8 @@ export default function Contact() {
         }
         
         .back-button:hover {
-          color: white;
-          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--text-primary);
+          background-color: var(--accent-soft);
         }
         
         .menu {
@@ -275,8 +275,8 @@ export default function Contact() {
         
         .form-input:focus {
           outline: none;
-          border-color:rgb(255, 255, 255);
-          box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+          border-color: var(--accent);
+          box-shadow: 0 0 0 2px var(--accent-soft);
         }
         
         textarea.form-input {
@@ -320,15 +320,15 @@ export default function Contact() {
         }
         
         .form-status.success {
-          background-color: rgba(16, 185, 129, 0.1);
-          color: #10b981;
-          border: 1px solid rgba(16, 185, 129, 0.2);
+          background-color: var(--accent-soft);
+          color: var(--success);
+          border: 1px solid var(--accent-soft);
         }
         
         .form-status.error {
-          background-color: rgba(239, 68, 68, 0.1);
-          color: #ef4444;
-          border: 1px solid rgba(239, 68, 68, 0.2);
+          background-color: var(--accent-soft);
+          color: var(--danger);
+          border: 1px solid var(--accent-soft);
         }
         
         @media (max-width: 768px) {
