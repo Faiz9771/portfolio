@@ -83,7 +83,7 @@ export default function About() {
             </h2>
             <div className="section-content">
               <p>NEXUS Hackathon - 2nd Runner Up</p>
-              <p>SIH'24 DRDO Runner Up</p>
+              <p>SIH&apos;24 DRDO Runner Up</p>
               <p>Xylem Hackathon Finalist</p>
             </div>
           </section>
