@@ -1,35 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
 
 :root {
-  /* One permanent orange theme: orange surfaces, black foreground. */
-  --bg-primary: #f97316;
-  --bg-secondary: #fb923c;
-  --text-primary: #160600;
-  --text-secondary: #351006;
-  --border-color: #6b2108;
-  --card-bg: #fb923c;
-  --card-border: #6b2108;
-  --nav-bg: rgba(249, 115, 22, 0.94);
-  --nav-border: #6b2108;
-  --section-bg: #fb923c;
-  --hover-bg: rgba(22, 6, 0, 0.1);
-  --shadow-color: rgba(22, 6, 0, 0.2);
-  --accent: #160600;
-  --accent-strong: #351006;
-  --accent-soft: rgba(22, 6, 0, 0.12);
-  --muted: #5c1e08;
-  --success: #14532d;
-  --danger: #7f1d1d;
+  /* One permanent animated orange theme. */
+  --bg-primary: transparent;
+  --bg-secondary: rgba(77, 16, 4, 0.62);
+  --text-primary: #ffffff;
+  --text-secondary: #fff0de;
+  --border-color: rgba(255, 230, 198, 0.52);
+  --card-bg: rgba(58, 12, 3, 0.62);
+  --card-border: rgba(255, 230, 198, 0.5);
+  --nav-bg: rgba(78, 17, 3, 0.58);
+  --nav-border: rgba(255, 230, 198, 0.42);
+  --section-bg: rgba(92, 21, 3, 0.54);
+  --hover-bg: rgba(255, 255, 255, 0.15);
+  --shadow-color: rgba(38, 5, 0, 0.38);
+  --accent: #ffffff;
+  --accent-strong: #fff0de;
+  --accent-soft: rgba(255, 255, 255, 0.16);
+  --muted: #ffd8b5;
+  --success: #bbf7d0;
+  --danger: #fecaca;
 }
 
 html, body, #__next {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-color: var(--bg-primary);
+  background-color: #c2410c;
   color: var(--text-primary);
   font-family: 'Fira Mono', monospace;
+  font-weight: 500;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-image: linear-gradient(120deg, #7c1d08 0%, #e34a0e 28%, #ff8a18 52%, #d83a08 76%, #8d2108 100%);
+  background-size: 260% 260%;
+  animation: orange-sky 16s ease-in-out infinite;
+}
+
+@keyframes orange-sky {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 * {
@@ -43,7 +55,7 @@ html, body, #__next {
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  background-color: var(--bg-primary);
+  background-color: transparent;
   color: var(--text-primary);
 }
 
@@ -60,6 +72,7 @@ html, body, #__next {
   flex-direction: column;
   gap: 30px;
   color: var(--text-primary);
+  backdrop-filter: blur(14px);
 }
 
 /* Header styles */
@@ -82,6 +95,10 @@ html, body, #__next {
   margin: 4px 0 0 0;
   color: var(--text-secondary);
   font-size: 16px;
+}
+
+p, li, input, textarea, button, select {
+  font-weight: 500;
 }
 
 /* Menu styles */
