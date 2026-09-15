@@ -1,47 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
 
 :root {
-  /* Sunrise — warm gold and ember, inspired by the reference image. */
-  --bg-primary: #fff3df;
-  --bg-secondary: #ffe1ae;
-  --text-primary: #2b0905;
-  --text-secondary: #783316;
-  --border-color: #e99a32;
-  --card-bg: #fff9ee;
-  --card-border: #e99a32;
-  --nav-bg: rgba(255, 243, 223, 0.9);
-  --nav-border: #e99a32;
-  --section-bg: #ffebc9;
-  --hover-bg: rgba(214, 76, 14, 0.12);
-  --shadow-color: rgba(104, 25, 7, 0.18);
-  --accent: #d94d0c;
-  --accent-strong: #a92c08;
-  --accent-soft: rgba(217, 77, 12, 0.13);
-  --muted: #a45122;
-  --success: #2f7d45;
-  --danger: #ba2917;
-}
-
-.dark {
-  /* Eclipse — black, burgundy and glowing orange. */
-  --bg-primary: #090504;
-  --bg-secondary: #190806;
-  --text-primary: #fff1d6;
-  --text-secondary: #e7ae76;
-  --border-color: #6d2410;
-  --card-bg: #170907;
-  --card-border: #7d2a10;
-  --nav-bg: rgba(9, 5, 4, 0.9);
-  --nav-border: #6d2410;
-  --section-bg: #250c07;
-  --hover-bg: rgba(255, 133, 22, 0.15);
-  --shadow-color: rgba(255, 97, 10, 0.16);
-  --accent: #ff8516;
-  --accent-strong: #ffad24;
-  --accent-soft: rgba(255, 133, 22, 0.15);
-  --muted: #c76a32;
-  --success: #75c77f;
-  --danger: #ff806b;
+  /* One permanent orange theme: orange surfaces, black foreground. */
+  --bg-primary: #f97316;
+  --bg-secondary: #fb923c;
+  --text-primary: #160600;
+  --text-secondary: #351006;
+  --border-color: #6b2108;
+  --card-bg: #fb923c;
+  --card-border: #6b2108;
+  --nav-bg: rgba(249, 115, 22, 0.94);
+  --nav-border: #6b2108;
+  --section-bg: #fb923c;
+  --hover-bg: rgba(22, 6, 0, 0.1);
+  --shadow-color: rgba(22, 6, 0, 0.2);
+  --accent: #160600;
+  --accent-strong: #351006;
+  --accent-soft: rgba(22, 6, 0, 0.12);
+  --muted: #5c1e08;
+  --success: #14532d;
+  --danger: #7f1d1d;
 }
 
 html, body, #__next {
@@ -272,25 +250,6 @@ html, body, #__next {
 /* Remove focus effect */
 .search-box::after {
   display: none;
-}
-
-/* Dark mode adjustments */
-.dark .search-box::before {
-  opacity: 0.5;
-}
-
-.dark .search-input {
-  border-color: var(--border-color);
-  background: transparent;
-}
-
-.dark .search-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent-soft);
-}
-
-.dark .search-input::placeholder {
-  color: var(--muted);
 }
 
 .tech-filter {
