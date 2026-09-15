@@ -3,15 +3,15 @@
 :root {
   /* One permanent animated orange theme. */
   --bg-primary: transparent;
-  --bg-secondary: rgba(255, 145, 45, 0.24);
+  --bg-secondary: transparent;
   --text-primary: #ffffff;
   --text-secondary: #fff0de;
   --border-color: rgba(255, 230, 198, 0.52);
-  --card-bg: rgba(255, 137, 32, 0.28);
-  --card-border: rgba(255, 244, 230, 0.58);
-  --nav-bg: rgba(255, 137, 32, 0.24);
-  --nav-border: rgba(255, 244, 230, 0.5);
-  --section-bg: rgba(255, 137, 32, 0.22);
+  --card-bg: transparent;
+  --card-border: transparent;
+  --nav-bg: transparent;
+  --nav-border: transparent;
+  --section-bg: transparent;
   --hover-bg: rgba(255, 255, 255, 0.15);
   --shadow-color: rgba(38, 5, 0, 0.38);
   --accent: #ffffff;
@@ -34,8 +34,8 @@ html, body, #__next {
 }
 
 body {
-  background-image: linear-gradient(120deg, #7c1d08 0%, #e34a0e 28%, #ff8a18 52%, #d83a08 76%, #8d2108 100%);
-  background-size: 260% 260%;
+  background-image: radial-gradient(circle at 18% 18%, #ffbd5b 0%, transparent 28%), radial-gradient(circle at 82% 72%, #a92608 0%, transparent 38%), linear-gradient(120deg, #f97316 0%, #ea580c 42%, #c2410c 100%);
+  background-size: 180% 180%;
   animation: orange-sky 16s ease-in-out infinite;
 }
 
@@ -60,20 +60,19 @@ body {
 }
 
 .card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
   max-width: 400px;
   width: 100%;
   padding: 30px;
   box-sizing: border-box;
-  box-shadow: 0 0 15px var(--shadow-color);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   gap: 30px;
   color: var(--text-primary);
-  backdrop-filter: blur(14px);
-  text-shadow: 0 1px 10px rgba(78, 17, 3, 0.32);
+  text-shadow: 0 2px 14px rgba(84, 18, 3, 0.42);
 }
 
 /* Header styles */
