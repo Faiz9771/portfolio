@@ -33,8 +33,8 @@ export default function Projects() {
   return (
     <div className="projects-page">
       <nav className="navbar">
-        <Link href="/" className="back-button">&larr; Back</Link>
-        <ul className="menu">{menuItems.map(item => <li key={item.name}><Link href={item.path} className={item.name === 'Projects' ? 'active' : ''}>{item.name}</Link></li>)}</ul>
+        <Link href="/" className="back-button" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>&larr; Back</Link>
+        <ul className="menu">{menuItems.map(item => <li key={item.name}><Link href={item.path} className={item.name === 'Projects' ? 'active' : ''} style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>{item.name}</Link></li>)}</ul>
       </nav>
       <main className="projects-content">
         <header className="page-heading"><span className="eyebrow">SELECTED WORK</span><h1>Projects</h1><p>A collection of systems I&apos;ve designed, built, and shipped.</p></header>
