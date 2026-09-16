@@ -14,7 +14,6 @@ export default function Contact() {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
-    { name: 'Setup', path: '/setup' },
     { name: 'Contact', path: '/contact' }
   ];
 

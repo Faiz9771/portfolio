@@ -4,7 +4,6 @@ export default function Menu() {
   const menuItems = [
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
-    { name: 'Setup', path: '/setup' },
     { name: 'Contact', path: '/contact' }
   ];
 
